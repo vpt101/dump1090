@@ -29,6 +29,8 @@
 //
 
 #include "dump1090.h"
+extern struct stModes Modes;
+extern struct stDF tDF;
 //
 // ============================= Utility functions ==========================
 //

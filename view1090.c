@@ -29,6 +29,8 @@
 //
 #include "coaa.h"
 #include "view1090.h"
+struct stModes Modes;
+struct stDF tDF;
 //
 // ============================= Utility functions ==========================
 //

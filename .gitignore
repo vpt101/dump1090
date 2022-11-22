@@ -9,3 +9,5 @@ frames.js
 *.rej
 *.orig
 untrackedDeveloperSettings.js
+*.err
+*.out
