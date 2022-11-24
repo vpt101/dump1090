@@ -72,6 +72,13 @@ function initialize() {
   initmap();
 
 
+	window.setInterval(function() {
+		fetchData();
+		refreshTableInfo();
+		refreshSelected();
+		reaper();
+		extendedPulse();
+	}, 1000);
   return;
 }
 
@@ -187,6 +194,7 @@ function refreshSelected() {
 	    
 	    // Let's show some extra data if we have site coordinates
 	    if (SiteShow) {
+      /*
             var siteLatLon  = new google.maps.LatLng(SiteLat, SiteLon);
             var planeLatLon = new google.maps.LatLng(selected.latitude, selected.longitude);
             var dist = google.maps.geometry.spherical.computeDistanceBetween (siteLatLon, planeLatLon);
@@ -199,6 +207,7 @@ function refreshSelected() {
             dist = (Math.round((dist)*10)/10).toFixed(1);
             html += '<tr><td colspan="' + columns + '" align="center">Distance from Site: ' + dist +
                 (Metric ? ' km' : ' NM') + '</td></tr>';
+                */
         } // End of SiteShow
 	} else {
 	    if (SiteShow) {
@@ -327,6 +336,7 @@ function refreshTableInfo() {
                         if (SiteShow && (typeof SiteLat !==  'undefined' || typeof SiteLon !==  'undefined')) {
                         html += '<td align="right">';
                             if (tableplane.vPosition) {
+                              /*
                                 var siteLatLon  = new google.maps.LatLng(SiteLat, SiteLon);
                                 var planeLatLon = new google.maps.LatLng(tableplane.latitude, tableplane.longitude);
                                 var dist = google.maps.geometry.spherical.computeDistanceBetween (siteLatLon, planeLatLon);
@@ -337,6 +347,7 @@ function refreshTableInfo() {
                                     }
                                 dist = (Math.round((dist)*10)/10).toFixed(1);
                                 html += dist;
+                                */
                             } else {
                             html += '0';
                             }
@@ -486,8 +497,8 @@ function resetMap() {
     ZoomLvl   = Number(localStorage['ZoomLvl']) || CONST_ZOOMLVL;
     
     // Set and refresh
-	GoogleMap.setZoom(parseInt(ZoomLvl));
-	GoogleMap.setCenter(new google.maps.LatLng(parseFloat(CenterLat), parseFloat(CenterLon)));
+	// GoogleMap.setZoom(parseInt(ZoomLvl));
+	// GoogleMap.setCenter(new google.maps.LatLng(parseFloat(CenterLat), parseFloat(CenterLon)));
 	
 	if (SelectedPlane) {
 	    selectPlaneByHex(SelectedPlane);
@@ -510,7 +521,7 @@ function drawCircle(marker, distance) {
     if (!Metric) {
         distance *= 1.852;
     }
-    
+    /*
     // Add circle overlay and bind to marker
     var circle = new google.maps.Circle({
       map: GoogleMap,
@@ -520,4 +531,5 @@ function drawCircle(marker, distance) {
       strokeOpacity: 0.3
     });
     circle.bindTo('center', marker, 'position');
+    */
 }

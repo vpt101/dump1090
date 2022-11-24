@@ -37,11 +37,15 @@ var planeObject = {
 
 	// Appends data to the running track so we can get a visual tail on the plane
 	// Only useful for a long running browser session.
-	funcAddToTrack	: function(){
-			// TODO: Write this function out
-			this.trackdata.push([this.latitude, this.longitude, this.altitude, this.track, this.speed]);
-			this.trackline.push(new google.maps.LatLng(this.latitude, this.longitude));
-		},
+  funcAddToTrack	: function(){
+    // TODO: Write this function out
+    try {
+      this.trackdata.push([this.latitude, this.longitude, this.altitude, this.track, this.speed]);
+      this.trackline.push(new google.maps.LatLng(this.latitude, this.longitude));
+    } catch (e) {
+      console.warn(e);
+    }
+  },
 
 	// This is to remove the line from the screen if we deselect the plane
 	funcClearLine	: function() {
@@ -212,6 +216,7 @@ var planeObject = {
 
 	// Update our marker on the map
 	funcUpdateMarker: function() {
+    try {
 			if (this.marker) {
 				this.marker.setPosition(new google.maps.LatLng(this.latitude, this.longitude));
 				this.marker.setIcon(this.funcGetIcon());
@@ -237,6 +242,9 @@ var planeObject = {
 				this.marker.setTitle(this.flight+' ('+this.icao+')');
 			}
 			return this.marker;
+    } catch (e) {
+      console.warn(e);
+    }
 		},
 
 	// Update our planes tail line,
